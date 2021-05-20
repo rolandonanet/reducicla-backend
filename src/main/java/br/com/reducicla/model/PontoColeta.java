@@ -24,8 +24,4 @@ public class PontoColeta {
     @NotEmpty(message = "Endereço obrigatório")
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Endereco endereco;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Endereco> listaDeStrings;
-
 }
