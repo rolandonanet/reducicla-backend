@@ -22,9 +22,6 @@ public class Coleta {
 
     private Date dataColeta;
 
-    @ManyToOne
-    private Coletor coletor;
-
     @OneToOne
     private PontoColeta pontoColeta;
 
