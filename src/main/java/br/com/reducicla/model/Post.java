@@ -1,5 +1,6 @@
 package br.com.reducicla.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,10 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table
 @Getter
 @Setter
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Table(name = "post")
 public class Post {
 
     @Id
@@ -26,9 +27,7 @@ public class Post {
 
     private String descricao;
 
-    private Integer curtidas;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
 
     public Post(){

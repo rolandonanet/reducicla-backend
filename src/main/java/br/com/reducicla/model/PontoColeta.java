@@ -1,20 +1,23 @@
 package br.com.reducicla.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.tomcat.util.http.fileupload.util.LimitedInputStream;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
-@Table
+@DynamicUpdate
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
-
+@Table(name = "ponto_coleta")
 public class PontoColeta {
 
     @Id
@@ -24,4 +27,10 @@ public class PontoColeta {
     @NotEmpty(message = "Endereço obrigatório")
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Endereco endereco;
+
+    @OneToMany
+    private List<Colaborador> colaboradores;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Coleta> coletas;
 }

@@ -1,8 +1,10 @@
 package br.com.reducicla.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -10,22 +12,30 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table
+@DynamicUpdate
 @Getter
 @Setter
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Table(name = "coleta")
 public class Coleta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataColeta;
 
-    @OneToOne
+    @ManyToOne
     private PontoColeta pontoColeta;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
+    private Colaborador colaborador;
+
+    @ManyToOne
+    private Coletor coletor;
+
+    @OneToMany
     private List<Material> materiais;
 
     public Coleta(){
