@@ -1,5 +1,6 @@
 package br.com.reducicla.service;
 
+import br.com.reducicla.exception.ResourceNotFoundException;
 import br.com.reducicla.model.Post;
 import br.com.reducicla.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-
 public class PostService {
     private final PostRepository postRepository;
 
@@ -25,7 +25,7 @@ public class PostService {
     }
 
     public Post findById(Long id){
-        return this.postRepository.findById(id).orElseThrow(() -> new RuntimeException("Post não encontrado"));
+        return this.postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post não encontrado"));
     }
 
     public Page<Post> findAll(Pageable pageable){
