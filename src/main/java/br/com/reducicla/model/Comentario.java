@@ -2,7 +2,6 @@ package br.com.reducicla.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -34,5 +33,7 @@ public class Comentario {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comentario> respostas;
 
-    public Comentario() { this.dataCadastro = new Date(); }
+    public Comentario() {
+        this.dataCadastro = new Date();
+    }
 }

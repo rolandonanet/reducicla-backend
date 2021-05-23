@@ -3,7 +3,6 @@ package br.com.reducicla.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -19,7 +18,7 @@ import java.util.List;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "usuario_coletor")
-@PrimaryKeyJoinColumn(name="usuario_id")
+@PrimaryKeyJoinColumn(name = "usuario_id")
 
 public class Coletor extends Usuario {
 

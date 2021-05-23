@@ -2,7 +2,6 @@ package br.com.reducicla.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -30,7 +29,7 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
 
-    public Post(){
+    public Post() {
         this.dataCadastro = new Date();
     }
 

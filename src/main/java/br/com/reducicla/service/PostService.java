@@ -20,19 +20,19 @@ public class PostService {
     }
 
     @Transactional
-    public Post save(Post post){
+    public Post save(Post post) {
         return this.postRepository.save(post);
     }
 
-    public Post findById(Long id){
+    public Post findById(Long id) {
         return this.postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post não encontrado"));
     }
 
-    public Page<Post> findAll(Pageable pageable){
+    public Page<Post> findAll(Pageable pageable) {
         return this.postRepository.findAll(pageable);
     }
 
-    public void delete(Post post){
+    public void delete(Post post) {
         this.postRepository.delete(post);
     }
 }

@@ -1,6 +1,5 @@
 package br.com.reducicla.model;
 
-import br.com.reducicla.enumerated.Role;
 import br.com.reducicla.enumerated.TipoMaterial;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

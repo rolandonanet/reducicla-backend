@@ -38,26 +38,26 @@ public class UsuarioService implements UserDetailsService {
         this.passwordEncoder = new BCryptPasswordEncoder(10);
     }
 
-    public Usuario save(Usuario usuario){
+    public Usuario save(Usuario usuario) {
         usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
         return this.usuarioRepository.save(usuario);
     }
 
-    public Coletor save(Coletor coletor){
+    public Coletor save(Coletor coletor) {
         coletor.setSenha(this.passwordEncoder.encode(coletor.getSenha()));
         return this.usuarioRepository.save(coletor);
     }
 
-    public Colaborador save(Colaborador colaborador){
+    public Colaborador save(Colaborador colaborador) {
         colaborador.setSenha(this.passwordEncoder.encode(colaborador.getSenha()));
         return this.usuarioRepository.save(colaborador);
     }
 
-    public Usuario findById(Long id){
+    public Usuario findById(Long id) {
         return this.usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
     }
 
-    public Usuario findByEmail(String email){
+    public Usuario findByEmail(String email) {
         return this.usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
     }
 

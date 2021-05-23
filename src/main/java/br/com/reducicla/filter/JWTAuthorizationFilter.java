@@ -56,7 +56,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
             UserDetails userDetails = usuarioService.loadUserByUsername(username);
             return username != null ? new UsernamePasswordAuthenticationToken(username, null, userDetails.getAuthorities()) : null;
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new InvalidTokenException("Token Inválido. Acesse a aplicação novamente!");
         }
     }
