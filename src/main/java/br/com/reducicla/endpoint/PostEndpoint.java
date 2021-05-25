@@ -22,25 +22,25 @@ public class PostEndpoint {
     }
 
     @PostMapping("posts/save")
-    public ResponseEntity<Post> save(@RequestBody Post post){
+    public ResponseEntity<Post> save(@RequestBody Post post) {
         this.postService.save(post);
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
 
     @GetMapping("posts/{id}")
-    public ResponseEntity<Post> findById(@PathVariable Long id){
+    public ResponseEntity<Post> findById(@PathVariable Long id) {
         Post post = this.postService.findById(id);
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
     @GetMapping("posts")
-    public ResponseEntity<Page<Post>> findAll(@PageableDefault Pageable pageable){
+    public ResponseEntity<Page<Post>> findAll(@PageableDefault Pageable pageable) {
         Page<Post> postPage = this.postService.findAll(pageable);
         return new ResponseEntity<>(postPage, HttpStatus.OK);
     }
 
     @DeleteMapping("posts/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         Post post = this.postService.findById(id);
         this.postService.delete(post);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

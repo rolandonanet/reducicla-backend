@@ -1,9 +1,13 @@
 package br.com.reducicla.repository;
 
-import br.com.reducicla.model.Post;
+import br.com.reducicla.model.Colaborador;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author User on 19/05/2021
+ */
+
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> {
 }
