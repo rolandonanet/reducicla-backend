@@ -20,15 +20,15 @@ public class ComentarioService {
     }
 
     @Transactional
-    public Comentario save(Comentario comentario){
+    public Comentario save(Comentario comentario) {
         return this.comentarioRepository.save(comentario);
     }
 
-    public Comentario findById(Long id){
+    public Comentario findById(Long id) {
         return this.comentarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Comentario não encontrado"));
     }
 
-    public void delete(Comentario comentario){
+    public void delete(Comentario comentario) {
         this.comentarioRepository.delete(comentario);
     }
 

@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
 import javax.transaction.Transactional;
 
 @Service
@@ -21,15 +20,15 @@ public class MaterialService {
     }
 
     @Transactional
-    public Material save(Material material){
+    public Material save(Material material) {
         return this.materialRepository.save(material);
     }
 
-    public Material findById(Long id){
+    public Material findById(Long id) {
         return this.materialRepository.findById(id).orElseThrow(() -> new RuntimeException("Material não encontrado"));
     }
 
-    public void delete(Material material){
+    public void delete(Material material) {
         this.materialRepository.delete(material);
     }
 
