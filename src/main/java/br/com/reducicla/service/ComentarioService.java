@@ -1,6 +1,8 @@
 package br.com.reducicla.service;
 
+import br.com.reducicla.dto.request.ComentarioRequestDTO;
 import br.com.reducicla.model.Comentario;
+import br.com.reducicla.model.Resposta;
 import br.com.reducicla.repository.ComentarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,7 @@ import javax.transaction.Transactional;
 @Service
 
 public class ComentarioService {
+
     private final ComentarioRepository comentarioRepository;
 
     @Autowired
@@ -24,6 +27,11 @@ public class ComentarioService {
         return this.comentarioRepository.save(comentario);
     }
 
+    @Transactional
+    public void addResposta(Comentario comentario, Resposta resposta){
+        comentario.getRespostas().add(resposta);
+    }
+
     public Comentario findById(Long id) {
         return this.comentarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Comentario não encontrado"));
     }
@@ -32,7 +40,12 @@ public class ComentarioService {
         this.comentarioRepository.delete(comentario);
     }
 
-    public Page<Comentario> findAll(Pageable pageable) {
-        return this.comentarioRepository.findAll(pageable);
+    public Page<Comentario> findAll(Pageable pageable, Long postId) {
+        if(postId != 0){
+            return this.comentarioRepository.findAllByPostId(pageable, postId);
+        }
+        else{
+            return this.comentarioRepository.findAll(pageable);
+        }
     }
 }

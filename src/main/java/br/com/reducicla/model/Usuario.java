@@ -1,5 +1,6 @@
 package br.com.reducicla.model;
 
+import br.com.reducicla.dto.request.UsuarioRequestDTO;
 import br.com.reducicla.enumerated.Role;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -40,11 +41,19 @@ public class Usuario {
     @NotEmpty(message = "Senha obrigatório")
     private String senha;
 
-    @NotEmpty(message = "Role obrigatório")
     @Enumerated(EnumType.STRING)
     private Role role;
 
     public Usuario() {
         this.dataCadastro = new Date();
+    }
+
+    public Usuario(UsuarioRequestDTO usuarioRequestDTO) {
+        this.setDataCadastro(new Date());
+        this.setNome(usuarioRequestDTO.getNome());
+        this.setSobrenome(usuarioRequestDTO.getSobrenome());
+        this.setEmail(usuarioRequestDTO.getEmail());
+        this.setSenha(usuarioRequestDTO.getSenha());
+        this.setRole(usuarioRequestDTO.getRole());
     }
 }

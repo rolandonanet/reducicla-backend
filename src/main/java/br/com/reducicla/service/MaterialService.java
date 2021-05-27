@@ -32,7 +32,12 @@ public class MaterialService {
         this.materialRepository.delete(material);
     }
 
-    public Page<Material> findAll(Pageable pageable) {
-        return this.materialRepository.findAll(pageable);
+    public Page<Material> findAll(Pageable pageable, Long colaboradorId) {
+        if(colaboradorId != 0){
+            return this.materialRepository.findAllByColaboradorId(pageable, colaboradorId);
+        }
+        else {
+            return this.materialRepository.findAll(pageable);
+        }
     }
 }

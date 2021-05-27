@@ -1,6 +1,8 @@
 package br.com.reducicla.model;
 
+import br.com.reducicla.dto.request.MaterialRequestDTO;
 import br.com.reducicla.enumerated.TipoMaterial;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,6 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@NoArgsConstructor
 @Table(name = "material")
 public class Material {
 
@@ -26,14 +27,22 @@ public class Material {
     @NotEmpty(message = "Nome obrigatório")
     private String nome;
 
-    @NotEmpty(message = "Quantidade obrigatório")
     private Integer quantidade;
 
-    @ManyToOne
-    private Colaborador colaborador;
-
-    @NotEmpty(message = "Tipo do material obrigatório")
     @Enumerated(EnumType.STRING)
     private TipoMaterial tipo;
 
+    @ManyToOne
+    @JsonBackReference
+    private Colaborador colaborador;
+
+    public Material() {
+    }
+
+    public Material(MaterialRequestDTO materialRequestDTO, Colaborador colaborador) {
+        this.nome = materialRequestDTO.getNome();
+        this.quantidade = materialRequestDTO.getQuantidade();
+        this.tipo = materialRequestDTO.getTipo();
+        this.colaborador = colaborador;
+    }
 }
