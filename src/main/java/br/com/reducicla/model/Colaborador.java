@@ -3,6 +3,7 @@ package br.com.reducicla.model;
 import br.com.reducicla.dto.request.UsuarioRequestDTO;
 import br.com.reducicla.enumerated.Role;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
@@ -31,7 +32,8 @@ public class Colaborador extends Usuario {
     @ManyToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "colaborador")
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "colaborador")
+    @JsonManagedReference
     private List<Material> materiais;
 
     public Colaborador() {
