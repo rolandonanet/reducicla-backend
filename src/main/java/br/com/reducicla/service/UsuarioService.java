@@ -82,6 +82,10 @@ public class UsuarioService implements UserDetailsService {
         return this.usuarioRepository.findAll(pageable);
     }
 
+    public void delete(Usuario usuario){
+        this.usuarioRepository.delete(usuario);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

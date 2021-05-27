@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("v1")
 @RequiredArgsConstructor
-
 public class PostEndpoint {
+
     private final PostService postService;
 
     @PostMapping("admin/posts/save")

@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@NoArgsConstructor
 @Table(name = "ponto_coleta")
 public class PontoColeta {
 
@@ -32,4 +31,7 @@ public class PontoColeta {
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Coleta> coletas;
+
+    public PontoColeta() {
+    }
 }

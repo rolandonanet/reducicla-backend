@@ -13,7 +13,6 @@ import javax.validation.constraints.NotEmpty;
 @DynamicUpdate
 @Getter
 @Setter
-@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "endereco")
 public class Endereco {
@@ -45,4 +44,6 @@ public class Endereco {
 
     private Integer lng;
 
+    public Endereco() {
+    }
 }

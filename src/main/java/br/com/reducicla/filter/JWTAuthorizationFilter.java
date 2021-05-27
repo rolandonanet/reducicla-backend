@@ -9,6 +9,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -35,7 +37,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String header = request.getHeader(HEADER);
-        if (header == null || header.toLowerCase().startsWith(TOKEN_PREFIX)) {
+        if (header == null) {
             chain.doFilter(request, response);
             return;
         }

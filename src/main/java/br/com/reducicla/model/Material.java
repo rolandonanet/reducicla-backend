@@ -15,7 +15,6 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@NoArgsConstructor
 @Table(name = "material")
 public class Material {
 
@@ -36,4 +35,6 @@ public class Material {
     @Enumerated(EnumType.STRING)
     private TipoMaterial tipo;
 
+    public Material() {
+    }
 }
