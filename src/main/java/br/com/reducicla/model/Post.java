@@ -1,5 +1,6 @@
 package br.com.reducicla.model;
 
+import br.com.reducicla.dto.request.PostRequestDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class Post {
 
     private String titulo;
 
+    @Column(columnDefinition = "TEXT")
     private String descricao;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -33,4 +35,9 @@ public class Post {
         this.dataCadastro = new Date();
     }
 
+    public Post(PostRequestDTO postRequestDTO) {
+        this.dataCadastro = new Date();
+        this.titulo = postRequestDTO.getTitulo();
+        this.descricao = postRequestDTO.getDescricao();
+    }
 }

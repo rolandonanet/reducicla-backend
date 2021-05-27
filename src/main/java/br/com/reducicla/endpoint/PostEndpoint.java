@@ -1,5 +1,6 @@
 package br.com.reducicla.endpoint;
 
+import br.com.reducicla.dto.request.PostRequestDTO;
 import br.com.reducicla.model.Post;
 import br.com.reducicla.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,8 @@ public class PostEndpoint {
     private final PostService postService;
 
     @PostMapping("admin/posts/save")
-    public ResponseEntity<Post> save(@RequestBody Post post) {
-        this.postService.save(post);
-        return new ResponseEntity<>(post, HttpStatus.CREATED);
+    public ResponseEntity<Post> save(@RequestBody PostRequestDTO postRequestDTO) {
+        return new ResponseEntity<>(this.postService.save(new Post(postRequestDTO)), HttpStatus.CREATED);
     }
 
     @GetMapping("protected/posts/{id}")
