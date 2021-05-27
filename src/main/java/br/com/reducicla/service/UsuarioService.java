@@ -1,5 +1,7 @@
 package br.com.reducicla.service;
 
+import br.com.reducicla.dto.request.UsuarioRequestDTO;
+import br.com.reducicla.enumerated.Role;
 import br.com.reducicla.exception.ResourceNotFoundException;
 import br.com.reducicla.model.Colaborador;
 import br.com.reducicla.model.Coletor;
@@ -8,6 +10,8 @@ import br.com.reducicla.repository.ColaboradorRepository;
 import br.com.reducicla.repository.ColetorRepository;
 import br.com.reducicla.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,9 +42,22 @@ public class UsuarioService implements UserDetailsService {
         this.passwordEncoder = new BCryptPasswordEncoder(10);
     }
 
-    public Usuario save(Usuario usuario) {
-        usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
-        return this.usuarioRepository.save(usuario);
+    public Object save(UsuarioRequestDTO usuarioRequestDTO) {
+        if(usuarioRequestDTO.getRole() == Role.COLETOR){
+            Coletor coletor = new Coletor(usuarioRequestDTO);
+            coletor.setSenha(this.passwordEncoder.encode(coletor.getSenha()));
+            return this.coletorRepository.save(coletor);
+        }
+        else if(usuarioRequestDTO.getRole() == Role.COLABORADOR){
+            Colaborador colaborador = new Colaborador(usuarioRequestDTO);
+            colaborador.setSenha(this.passwordEncoder.encode(colaborador.getSenha()));
+            return this.colaboradorRepository.save(colaborador);
+        }
+        else {
+            Usuario usuario = new Usuario(usuarioRequestDTO);
+            usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
+            return this.usuarioRepository.save(usuario);
+        }
     }
 
     public Coletor save(Coletor coletor) {
@@ -59,6 +76,10 @@ public class UsuarioService implements UserDetailsService {
 
     public Usuario findByEmail(String email) {
         return this.usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+    }
+
+    public Page<Usuario> findAll(Pageable pageable){
+        return this.usuarioRepository.findAll(pageable);
     }
 
     @Override
