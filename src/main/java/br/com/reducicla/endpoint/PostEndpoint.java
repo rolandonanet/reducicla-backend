@@ -19,7 +19,7 @@ public class PostEndpoint {
 
     private final PostService postService;
 
-    @PostMapping("admin/posts/save")
+    @PostMapping("admin/posts")
     public ResponseEntity<Post> save(@RequestBody PostRequestDTO postRequestDTO) {
         return new ResponseEntity<>(this.postService.save(new Post(postRequestDTO)), HttpStatus.CREATED);
     }

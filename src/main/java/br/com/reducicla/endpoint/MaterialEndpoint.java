@@ -28,7 +28,7 @@ public class MaterialEndpoint {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("protected/materiais/save")
+    @PostMapping("protected/materiais")
     public ResponseEntity<Material> save(@RequestBody MaterialRequestDTO materialRequestDTO, @RequestParam Long colaboradorId) {
         Colaborador colaborador = (Colaborador) this.usuarioService.findById(colaboradorId);
         return new ResponseEntity<>(this.materialService.save(new Material(materialRequestDTO, colaborador)), HttpStatus.CREATED);

@@ -27,7 +27,7 @@ public class UsuarioEndpoint {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("usuarios/save")
+    @PostMapping("usuarios")
     public ResponseEntity<?> save(@RequestBody UsuarioRequestDTO usuarioRequestDTO){
         return new ResponseEntity<>(this.usuarioService.save(usuarioRequestDTO), HttpStatus.CREATED);
     }
