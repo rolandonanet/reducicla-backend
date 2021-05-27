@@ -2,6 +2,7 @@ package br.com.reducicla.model;
 
 import br.com.reducicla.dto.request.PostRequestDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +29,8 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "post")
+    @JsonManagedReference
     private List<Comentario> comentarios;
 
     public Post() {

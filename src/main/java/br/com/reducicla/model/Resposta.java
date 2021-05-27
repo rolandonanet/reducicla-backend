@@ -1,9 +1,8 @@
 package br.com.reducicla.model;
 
-import br.com.reducicla.dto.request.ComentarioRequestDTO;
+import br.com.reducicla.dto.request.RespostaRequestDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
@@ -11,15 +10,18 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
-import java.util.List;
+
+/**
+ * @author Lucas Copque on 26/05/2021
+ */
 
 @Entity
 @DynamicUpdate
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Table(name = "comentario")
-public class Comentario {
+@Table(name = "resposta")
+public class Resposta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,20 +37,14 @@ public class Comentario {
 
     @ManyToOne
     @JsonBackReference
-    private Post post;
+    private Comentario comentario;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "comentario")
-    @JsonManagedReference
-    private List<Resposta> respostas;
-
-    public Comentario() {
-        this.dataCadastro = new Date();
+    public Resposta() {
     }
 
-    public Comentario(ComentarioRequestDTO comentarioRequestDTO, Post post) {
-        this.dataCadastro = new Date();
-        this.nome = comentarioRequestDTO.getNome();
-        this.texto = comentarioRequestDTO.getTexto();
-        this.post = post;
+    public Resposta(RespostaRequestDTO respostaRequestDTO, Comentario comentario){
+        this.nome = respostaRequestDTO.getNome();
+        this.texto = respostaRequestDTO.getTexto();
+        this.comentario = comentario;
     }
 }
