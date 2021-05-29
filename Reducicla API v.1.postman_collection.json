@@ -1,816 +1,921 @@
 {
-  "info": {
-    "_postman_id": "a027bc91-bfcc-4164-82b2-7cee9c06d8a2",
-    "name": "Reducicla API v.1",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Autenticação",
-      "item": [
-        {
-          "name": "Login",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{pathURL}}/login",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "login"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Usuários",
-      "item": [
-        {
-          "name": "Save - COLETOR",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Copque\",\r\n    \"email\": \"copque.faculdade@gmail.com\",\r\n    \"senha\": \"yaba2389\",\r\n    \"role\": \"COLETOR\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua João Martins Bueno\",\r\n        \"numero\": \"113\",\r\n        \"complemento\": null,\r\n        \"bairro\": \"Vila Nivi\",\r\n        \"cidade\": \"São Paulo\",\r\n        \"estado\": \"São Paulo\",\r\n        \"cep\": \"02255-120\",\r\n        \"lat\": 0,\r\n        \"lng\": 0\r\n    }\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/usuarios",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "usuarios"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Save - COLABORADOR",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Copque\",\r\n    \"email\": \"tecnologia@yabaconsultoria.com.br\",\r\n    \"senha\": \"yaba2389\",\r\n    \"role\": \"COLABORADOR\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua João Martins Bueno\",\r\n        \"numero\": \"113\",\r\n        \"complemento\": null,\r\n        \"bairro\": \"Vila Nivi\",\r\n        \"cidade\": \"São Paulo\",\r\n        \"estado\": \"São Paulo\",\r\n        \"cep\": \"02255-120\",\r\n        \"lat\": 0,\r\n        \"lng\": 0\r\n    }\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/usuarios",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "usuarios"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Save - ADMIN",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Copque\",\r\n    \"email\": \"copque.faculdade@gmail.com\",\r\n    \"senha\": \"yaba2389\",\r\n    \"role\": \"ADMIN\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/usuarios",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "usuarios"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindById",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/usuarios/2",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "usuarios",
-                "2"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindAll",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/usuarios",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "usuarios"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/admin/usuarios/6",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "admin",
-                "usuarios",
-                "6"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Posts",
-      "item": [
-        {
-          "name": "Save",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"titulo\": \"Lorem Ipsum\",\r\n    \"descricao\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam varius, lacus vel consectetur tincidunt, turpis ex porta felis, sit amet bibendum lorem odio vel leo. Duis iaculis pulvinar lobortis. Suspendisse tincidunt ligula mi, nec fringilla purus interdum sed. Phasellus enim nisl, placerat in imperdiet eu, pretium vel orci. Mauris malesuada et tellus ac consectetur. Donec tincidunt hendrerit dictum. Aenean eros orci, porttitor ut erat at, mattis porta orci. Cras vel est iaculis, laoreet quam ac, bibendum mi. Morbi pellentesque metus velit, id semper sapien volutpat non. Nullam sit amet ligula molestie, semper ex vel, tincidunt mauris. Praesent nec augue sit amet quam viverra mollis ut non elit.\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/admin/posts",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "admin",
-                "posts"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindById",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/posts/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "posts",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindAll",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/posts",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "posts"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/admin/posts/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "admin",
-                "posts",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Comentários",
-      "item": [
-        {
-          "name": "Save",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Lucas Copque\",\r\n    \"texto\": \"Muito bom!\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/comentarios?postId=2",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "comentarios"
-              ],
-              "query": [
-                {
-                  "key": "postId",
-                  "value": "2"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindById",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/comentarios/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "comentarios",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindAllByPost",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/comentarios?postId=2",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "comentarios"
-              ],
-              "query": [
-                {
-                  "key": "postId",
-                  "value": "2"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/admin/comentarios/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "admin",
-                "comentarios",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "addResposta",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Lucas Copque\",\r\n    \"texto\": \"Legal!\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/comentarios/respostas?comentarioId=6",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "comentarios",
-                "respostas"
-              ],
-              "query": [
-                {
-                  "key": "comentarioId",
-                  "value": "6"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "removeResposta",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Lucas Copque\",\r\n    \"texto\": \"Legal!\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/comentarios/respostas/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "comentarios",
-                "respostas",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Materiais",
-      "item": [
-        {
-          "name": "Save",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Papelão\",\r\n    \"quantidade\": 10,\r\n    \"tipo\": \"PAPEL\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/materiais?colaboradorId=3",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "materiais"
-              ],
-              "query": [
-                {
-                  "key": "colaboradorId",
-                  "value": "3"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindById",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/posts/",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "posts",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindAll",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/materiais",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "materiais"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindAllByColetor",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/materiais?coletorId=3",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "materiais"
-              ],
-              "query": [
-                {
-                  "key": "coletorId",
-                  "value": "3"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/admin/materiais/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "admin",
-                "materiais",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Ponto Coleta",
-      "item": [
-        {
-          "name": "Save",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"nome\": \"Papelão\",\r\n    \"quantidade\": 10,\r\n    \"tipo\": \"PAPEL\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/ponto-coleta",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "ponto-coleta"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindById",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/ponto-coleta/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "ponto-coleta",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "FindAll",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/protected/ponto-coleta",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "protected",
-                "ponto-coleta"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/admin/materiais/1",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "admin",
-                "materiais",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Aprove",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "{{token}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{pathURL}}/{{version}}/admin/ponto-coleta/1?status=true",
-              "host": [
-                "{{pathURL}}"
-              ],
-              "path": [
-                "{{version}}",
-                "admin",
-                "ponto-coleta",
-                "1"
-              ],
-              "query": [
-                {
-                  "key": "status",
-                  "value": "true"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "a027bc91-bfcc-4164-82b2-7cee9c06d8a2",
+		"name": "Reducicla API v.1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{pathURL}}/login",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuários",
+			"item": [
+				{
+					"name": "Save - COLETOR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Copque\",\r\n    \"email\": \"copque.faculdade@gmail.com\",\r\n    \"senha\": \"yaba2389\",\r\n    \"role\": \"COLETOR\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua João Martins Bueno\",\r\n        \"numero\": \"113\",\r\n        \"complemento\": null,\r\n        \"bairro\": \"Vila Nivi\",\r\n        \"cidade\": \"São Paulo\",\r\n        \"estado\": \"São Paulo\",\r\n        \"cep\": \"02255-120\",\r\n        \"lat\": 0,\r\n        \"lng\": 0\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/usuarios",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save - COLABORADOR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Copque\",\r\n    \"email\": \"tecnologia@yabaconsultoria.com.br\",\r\n    \"senha\": \"yaba2389\",\r\n    \"role\": \"COLABORADOR\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua João Martins Bueno\",\r\n        \"numero\": \"113\",\r\n        \"complemento\": null,\r\n        \"bairro\": \"Vila Nivi\",\r\n        \"cidade\": \"São Paulo\",\r\n        \"estado\": \"São Paulo\",\r\n        \"cep\": \"02255-120\",\r\n        \"lat\": 0,\r\n        \"lng\": 0\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/usuarios",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save - ADMIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Copque\",\r\n    \"email\": \"lucas.copque@yabaconsultoria.com.br\",\r\n    \"senha\": \"yaba2389\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/usuarios",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/usuarios/4",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"usuarios",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/usuarios",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/usuarios/6",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"usuarios",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Lorem Ipsum\",\r\n    \"descricao\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam varius, lacus vel consectetur tincidunt, turpis ex porta felis, sit amet bibendum lorem odio vel leo. Duis iaculis pulvinar lobortis. Suspendisse tincidunt ligula mi, nec fringilla purus interdum sed. Phasellus enim nisl, placerat in imperdiet eu, pretium vel orci. Mauris malesuada et tellus ac consectetur. Donec tincidunt hendrerit dictum. Aenean eros orci, porttitor ut erat at, mattis porta orci. Cras vel est iaculis, laoreet quam ac, bibendum mi. Morbi pellentesque metus velit, id semper sapien volutpat non. Nullam sit amet ligula molestie, semper ex vel, tincidunt mauris. Praesent nec augue sit amet quam viverra mollis ut non elit.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/posts",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/posts/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/posts",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/posts/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comentários",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lucas Copque\",\r\n    \"texto\": \"Muito bom!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/comentarios?postId=2",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"comentarios"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/comentarios/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"comentarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllByPost",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/comentarios?postId=2",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"comentarios"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/comentarios/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"comentarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addResposta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lucas Copque\",\r\n    \"texto\": \"Legal!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/comentarios/respostas?comentarioId=6",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"comentarios",
+								"respostas"
+							],
+							"query": [
+								{
+									"key": "comentarioId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeResposta",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Lucas Copque\",\r\n    \"texto\": \"Legal!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/comentarios/respostas/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"comentarios",
+								"respostas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Materiais",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Papelão\",\r\n    \"quantidade\": 10,\r\n    \"tipo\": \"PAPEL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/materiais?colaboradorId=2",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"materiais"
+							],
+							"query": [
+								{
+									"key": "colaboradorId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/posts/",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/materiais/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"materiais",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ponto Coleta",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Papelão\",\r\n    \"quantidade\": 10,\r\n    \"tipo\": \"PAPEL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/ponto-coleta",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"ponto-coleta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/ponto-coleta/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"ponto-coleta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/ponto-coleta",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"ponto-coleta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAll Aprovado",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/ponto-coleta?aprovado=true",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"ponto-coleta"
+							],
+							"query": [
+								{
+									"key": "aprovado",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/materiais/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"materiais",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aprove",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/ponto-coleta/1?status=true",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"ponto-coleta",
+								"1"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Coleta",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/coletas?coletorId=7&colaboradorId=3&pontoColetaId=4",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"coletas"
+							],
+							"query": [
+								{
+									"key": "coletorId",
+									"value": "7"
+								},
+								{
+									"key": "colaboradorId",
+									"value": "3"
+								},
+								{
+									"key": "pontoColetaId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/coletas/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"coletas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/protected/coletas",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"protected",
+								"coletas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pathURL}}/{{version}}/admin/coletas/1",
+							"host": [
+								"{{pathURL}}"
+							],
+							"path": [
+								"{{version}}",
+								"admin",
+								"coletas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
