@@ -20,15 +20,15 @@ public class RespostaService {
         this.respostaRepository = respostaRepository;
     }
 
-    public Resposta save(Resposta resposta){
+    public Resposta save(Resposta resposta) {
         return this.respostaRepository.save(resposta);
     }
 
-    public Resposta findById(Long id){
+    public Resposta findById(Long id) {
         return this.respostaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resposta não encontrada"));
     }
 
-    public void delete(Resposta resposta){
+    public void delete(Resposta resposta) {
         this.respostaRepository.delete(resposta);
     }
 }

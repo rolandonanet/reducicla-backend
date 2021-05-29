@@ -3,7 +3,6 @@ package br.com.reducicla.endpoint;
 import br.com.reducicla.dto.request.UsuarioRequestDTO;
 import br.com.reducicla.model.Usuario;
 import br.com.reducicla.service.UsuarioService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,23 +27,23 @@ public class UsuarioEndpoint {
     }
 
     @PostMapping("usuarios")
-    public ResponseEntity<?> save(@RequestBody UsuarioRequestDTO usuarioRequestDTO){
+    public ResponseEntity<?> save(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         return new ResponseEntity<>(this.usuarioService.save(usuarioRequestDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("protected/usuarios/{id}")
-    public ResponseEntity<Usuario> findById(@PathVariable Long id){
+    public ResponseEntity<Usuario> findById(@PathVariable Long id) {
         Usuario usuario = this.usuarioService.findById(id);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
     @GetMapping("protected/usuarios")
-    public ResponseEntity<Page<Usuario>> findAll(@PageableDefault Pageable pageable){
+    public ResponseEntity<Page<Usuario>> findAll(@PageableDefault Pageable pageable) {
         return new ResponseEntity<>(this.usuarioService.findAll(pageable), HttpStatus.OK);
     }
 
     @DeleteMapping("admin/usuarios/{id}")
-    public ResponseEntity<Usuario> delete(@PathVariable Long id){
+    public ResponseEntity<Usuario> delete(@PathVariable Long id) {
         Usuario usuario = this.usuarioService.findById(id);
         this.usuarioService.delete(usuario);
         return new ResponseEntity<>(usuario, HttpStatus.NO_CONTENT);

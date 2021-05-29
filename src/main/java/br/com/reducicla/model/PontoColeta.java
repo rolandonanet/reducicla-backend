@@ -1,15 +1,16 @@
 package br.com.reducicla.model;
 
 import br.com.reducicla.dto.request.PontoColetaRequestDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @DynamicUpdate
@@ -36,6 +37,7 @@ public class PontoColeta {
     private List<Colaborador> colaboradores;
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonBackReference
     private List<Coleta> coletas;
 
     public PontoColeta() {

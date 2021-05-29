@@ -27,26 +27,32 @@ public class PontoColetaService {
         this.pontoColetaRepository = pontoColetaRepository;
     }
 
-    public PontoColeta save(PontoColeta pontoColeta){
+    public PontoColeta save(PontoColeta pontoColeta) {
         return this.pontoColetaRepository.save(pontoColeta);
     }
 
-    public void updateStatus(PontoColeta pontoColeta, Boolean status){
+    public void updateStatus(PontoColeta pontoColeta, Boolean status) {
         pontoColeta.setAprovado(status);
         this.pontoColetaRepository.save(pontoColeta);
     }
 
-    public PontoColeta findById(Long id){
+    public PontoColeta findById(Long id) {
         return this.pontoColetaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ponto de Coleta não encontrado"));
     }
 
-    public Page<PontoColetaResponseDTO> findAll(Pageable pageable){
-        Page<PontoColeta> pontoColetaPage = this.pontoColetaRepository.findAll(pageable);
-        List<PontoColetaResponseDTO> pontoColetaResponseDTOList = pontoColetaPage.getContent().stream().map(PontoColetaResponseDTO::new).collect(Collectors.toList());
-        return new PageImpl<>(pontoColetaResponseDTOList, pageable, pontoColetaPage.getTotalElements());
+    public Page<PontoColetaResponseDTO> findAll(Pageable pageable, Boolean aprovado) {
+        if (aprovado != null) {
+            Page<PontoColeta> pontoColetaPage = this.pontoColetaRepository.findAllByAprovado(pageable, aprovado);
+            List<PontoColetaResponseDTO> pontoColetaResponseDTOList = pontoColetaPage.getContent().stream().map(PontoColetaResponseDTO::new).collect(Collectors.toList());
+            return new PageImpl<>(pontoColetaResponseDTOList, pageable, pontoColetaPage.getTotalElements());
+        } else {
+            Page<PontoColeta> pontoColetaPage = this.pontoColetaRepository.findAll(pageable);
+            List<PontoColetaResponseDTO> pontoColetaResponseDTOList = pontoColetaPage.getContent().stream().map(PontoColetaResponseDTO::new).collect(Collectors.toList());
+            return new PageImpl<>(pontoColetaResponseDTOList, pageable, pontoColetaPage.getTotalElements());
+        }
     }
 
-    public void delete(PontoColeta pontoColeta){
+    public void delete(PontoColeta pontoColeta) {
         this.pontoColetaRepository.delete(pontoColeta);
     }
 }

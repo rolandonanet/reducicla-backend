@@ -5,8 +5,8 @@ import br.com.reducicla.enumerated.TipoMaterial;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -18,6 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "material")
+@ToString
 public class Material {
 
     @Id
@@ -35,6 +36,10 @@ public class Material {
     @ManyToOne
     @JsonBackReference
     private Colaborador colaborador;
+
+    @ManyToOne
+    @JsonBackReference
+    private Coleta coleta;
 
     public Material() {
     }

@@ -1,14 +1,18 @@
 package br.com.reducicla.service;
 
+import br.com.reducicla.dto.response.ColetaResponseDTO;
 import br.com.reducicla.exception.ResourceNotFoundException;
 import br.com.reducicla.model.Coleta;
 import br.com.reducicla.repository.ColetaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +29,10 @@ public class ColetaService {
         return this.coletaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Coleta não encontrada"));
     }
 
-    public Page<Coleta> findAll(Pageable pageable) {
-        return this.coletaRepository.findAll(pageable);
+    public Page<ColetaResponseDTO> findAll(Pageable pageable) {
+        Page<Coleta> coletaPage = this.coletaRepository.findAll(pageable);
+        List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
+        return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());
     }
 
     public void delete(Coleta coleta) {

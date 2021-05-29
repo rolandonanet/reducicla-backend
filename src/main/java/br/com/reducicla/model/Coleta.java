@@ -1,11 +1,14 @@
 package br.com.reducicla.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,19 +28,30 @@ public class Coleta {
     private Date dataColeta;
 
     @ManyToOne
-    private PontoColeta pontoColeta;
+    @JsonBackReference
+    private Coletor coletor;
 
     @ManyToOne
+    @JsonBackReference
     private Colaborador colaborador;
 
     @ManyToOne
-    private Coletor coletor;
+    @JsonBackReference
+    private PontoColeta pontoColeta;
 
-    @OneToMany
+    @OneToMany(mappedBy = "coleta")
+    @JsonManagedReference
     private List<Material> materiais;
 
     public Coleta() {
         this.dataColeta = new Date();
     }
 
+    public Coleta(Coletor coletor, Colaborador colaborador, PontoColeta pontoColeta) {
+        this.dataColeta = new Date();
+        this.coletor = coletor;
+        this.colaborador = colaborador;
+        this.pontoColeta = pontoColeta;
+        this.materiais = new ArrayList<>();
+    }
 }

@@ -6,10 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.util.Date;
-
 /**
  * @author User on 26/05/2021
  */

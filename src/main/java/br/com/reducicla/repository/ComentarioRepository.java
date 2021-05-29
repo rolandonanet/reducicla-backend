@@ -1,7 +1,6 @@
 package br.com.reducicla.repository;
 
 import br.com.reducicla.model.Comentario;
-import br.com.reducicla.model.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
