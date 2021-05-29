@@ -4,8 +4,6 @@ import br.com.reducicla.model.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +32,7 @@ public class PontoColetaResponseDTO {
     }
 
     @Getter
-    private class ColaboradorResponseDTO{
+    private class ColaboradorResponseDTO {
         private Long id;
         private String nome;
         private String sobrenome;

@@ -1,10 +1,9 @@
 package br.com.reducicla.service;
 
+import br.com.reducicla.model.Coleta;
 import br.com.reducicla.model.Material;
 import br.com.reducicla.repository.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,20 +23,18 @@ public class MaterialService {
         return this.materialRepository.save(material);
     }
 
+    @Transactional
+    public void coletaMaterial(Material material, Coleta coleta) {
+        material.setColeta(coleta);
+        material.setColaborador(null);
+        this.save(material);
+    }
+
     public Material findById(Long id) {
         return this.materialRepository.findById(id).orElseThrow(() -> new RuntimeException("Material não encontrado"));
     }
 
     public void delete(Material material) {
         this.materialRepository.delete(material);
-    }
-
-    public Page<Material> findAll(Pageable pageable, Long colaboradorId) {
-        if(colaboradorId != 0){
-            return this.materialRepository.findAllByColaboradorId(pageable, colaboradorId);
-        }
-        else {
-            return this.materialRepository.findAll(pageable);
-        }
     }
 }

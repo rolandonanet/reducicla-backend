@@ -32,32 +32,32 @@ public class PontoColetaEndpoint {
     }
 
     @PostMapping("protected/ponto-coleta")
-    public ResponseEntity<PontoColetaResponseDTO> save(@RequestBody PontoColetaRequestDTO pontoColetaRequestDTO, @RequestParam Long colaboradorId){
+    public ResponseEntity<PontoColetaResponseDTO> save(@RequestBody PontoColetaRequestDTO pontoColetaRequestDTO, @RequestParam Long colaboradorId) {
         Colaborador colaborador = (Colaborador) this.usuarioService.findById(colaboradorId);
         PontoColeta pontoColeta = this.pontoColetaService.save(new PontoColeta(pontoColetaRequestDTO, colaborador));
         return new ResponseEntity<>(new PontoColetaResponseDTO(pontoColeta), HttpStatus.CREATED);
     }
 
     @PutMapping("admin/ponto-coleta/{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestParam Boolean status){
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestParam Boolean status) {
         PontoColeta pontoColeta = this.pontoColetaService.findById(id);
         this.pontoColetaService.updateStatus(pontoColeta, status);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("protected/ponto-coleta/{id}")
-    public ResponseEntity<PontoColetaResponseDTO> findById(@PathVariable Long id){
+    public ResponseEntity<PontoColetaResponseDTO> findById(@PathVariable Long id) {
         PontoColeta pontoColeta = this.pontoColetaService.findById(id);
         return new ResponseEntity<>(new PontoColetaResponseDTO(pontoColeta), HttpStatus.OK);
     }
 
     @GetMapping("protected/ponto-coleta")
-    public ResponseEntity<Page<PontoColetaResponseDTO>> findAll(@PageableDefault Pageable pageable){
-        return new ResponseEntity<>(this.pontoColetaService.findAll(pageable), HttpStatus.OK);
+    public ResponseEntity<Page<PontoColetaResponseDTO>> findAll(@PageableDefault Pageable pageable, @RequestParam(required = false) Boolean aprovado) {
+        return new ResponseEntity<>(this.pontoColetaService.findAll(pageable, aprovado), HttpStatus.OK);
     }
 
     @DeleteMapping("admin/ponto-coleta/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         PontoColeta pontoColeta = this.pontoColetaService.findById(id);
         this.pontoColetaService.delete(pontoColeta);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

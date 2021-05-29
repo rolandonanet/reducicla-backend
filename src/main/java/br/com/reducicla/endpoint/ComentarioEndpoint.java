@@ -8,7 +8,6 @@ import br.com.reducicla.model.Resposta;
 import br.com.reducicla.service.ComentarioService;
 import br.com.reducicla.service.PostService;
 import br.com.reducicla.service.RespostaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

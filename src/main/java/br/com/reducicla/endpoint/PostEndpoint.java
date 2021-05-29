@@ -4,7 +4,6 @@ import br.com.reducicla.dto.request.PostRequestDTO;
 import br.com.reducicla.model.Post;
 import br.com.reducicla.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

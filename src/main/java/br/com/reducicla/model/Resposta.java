@@ -42,7 +42,7 @@ public class Resposta {
     public Resposta() {
     }
 
-    public Resposta(RespostaRequestDTO respostaRequestDTO, Comentario comentario){
+    public Resposta(RespostaRequestDTO respostaRequestDTO, Comentario comentario) {
         this.nome = respostaRequestDTO.getNome();
         this.texto = respostaRequestDTO.getTexto();
         this.comentario = comentario;
