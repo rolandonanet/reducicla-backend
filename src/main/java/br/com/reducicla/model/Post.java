@@ -29,6 +29,9 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
+    @Column(columnDefinition = "TEXT")
+    private String imageUrl;
+
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "post")
     @JsonManagedReference
     private List<Comentario> comentarios;
@@ -38,6 +41,7 @@ public class Post {
     }
 
     public Post(PostRequestDTO postRequestDTO) {
+        this.imageUrl = postRequestDTO.getImageUrl();
         this.dataCadastro = new Date();
         this.titulo = postRequestDTO.getTitulo();
         this.descricao = postRequestDTO.getDescricao();

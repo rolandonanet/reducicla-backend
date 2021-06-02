@@ -37,10 +37,6 @@ public class Comentario {
     @JsonBackReference
     private Post post;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "comentario")
-    @JsonManagedReference
-    private List<Resposta> respostas;
-
     public Comentario() {
         this.dataCadastro = new Date();
     }

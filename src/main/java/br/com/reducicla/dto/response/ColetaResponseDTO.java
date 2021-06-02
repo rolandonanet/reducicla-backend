@@ -21,7 +21,6 @@ public class ColetaResponseDTO {
     private Date dataColeta;
     private ColetorResponseDTO coletor;
     private ColaboradorResponseDTO colaborador;
-    private PontoColetaResponseDTO pontoColeta;
     private List<MaterialResponseDTO> materiais;
 
     public ColetaResponseDTO(Coleta coleta) {
@@ -29,7 +28,6 @@ public class ColetaResponseDTO {
         this.dataColeta = coleta.getDataColeta();
         this.coletor = new ColetorResponseDTO(coleta.getColetor());
         this.colaborador = new ColaboradorResponseDTO(coleta.getColaborador());
-        this.pontoColeta = new PontoColetaResponseDTO(coleta.getPontoColeta());
         this.materiais = coleta.getMateriais().stream().map(MaterialResponseDTO::new).collect(Collectors.toList());
     }
 
@@ -51,22 +49,13 @@ public class ColetaResponseDTO {
         private Long id;
         private String nome;
         private String sobrenome;
+        private Endereco endereco;
 
         public ColaboradorResponseDTO(Colaborador colaborador) {
             this.id = colaborador.getId();
             this.nome = colaborador.getNome();
             this.sobrenome = colaborador.getSobrenome();
-        }
-    }
-
-    @Getter
-    private class PontoColetaResponseDTO {
-        private Long id;
-        private Endereco endereco;
-
-        public PontoColetaResponseDTO(PontoColeta pontoColeta) {
-            this.id = pontoColeta.getId();
-            this.endereco = pontoColeta.getEndereco();
+            this.endereco = colaborador.getEndereco();
         }
     }
 

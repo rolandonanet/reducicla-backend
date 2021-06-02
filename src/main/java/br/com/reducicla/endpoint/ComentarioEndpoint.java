@@ -4,10 +4,8 @@ import br.com.reducicla.dto.request.ComentarioRequestDTO;
 import br.com.reducicla.dto.request.RespostaRequestDTO;
 import br.com.reducicla.model.Comentario;
 import br.com.reducicla.model.Post;
-import br.com.reducicla.model.Resposta;
 import br.com.reducicla.service.ComentarioService;
 import br.com.reducicla.service.PostService;
-import br.com.reducicla.service.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,13 +19,11 @@ import org.springframework.web.bind.annotation.*;
 public class ComentarioEndpoint {
 
     private final ComentarioService comentarioService;
-    private final RespostaService respostaService;
     private final PostService postService;
 
     @Autowired
-    public ComentarioEndpoint(ComentarioService comentarioService, RespostaService respostaService, PostService postService) {
+    public ComentarioEndpoint(ComentarioService comentarioService, PostService postService) {
         this.comentarioService = comentarioService;
-        this.respostaService = respostaService;
         this.postService = postService;
     }
 
@@ -53,20 +49,6 @@ public class ComentarioEndpoint {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Comentario comentario = this.comentarioService.findById(id);
         this.comentarioService.delete(comentario);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PostMapping("protected/comentarios/respostas")
-    public ResponseEntity<Resposta> addRespostas(@RequestBody RespostaRequestDTO respostaRequestDTO, @RequestParam Long comentarioId) {
-        Comentario comentario = this.comentarioService.findById(comentarioId);
-        Resposta resposta = new Resposta(respostaRequestDTO, comentario);
-        return new ResponseEntity<>(this.respostaService.save(resposta), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("protected/comentarios/respostas/{id}")
-    public ResponseEntity<?> removeResposta(@PathVariable Long id) {
-        Resposta resposta = this.respostaService.findById(id);
-        this.respostaService.delete(resposta);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

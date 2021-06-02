@@ -35,10 +35,6 @@ public class Coleta {
     @JsonBackReference
     private Colaborador colaborador;
 
-    @ManyToOne
-    @JsonBackReference
-    private PontoColeta pontoColeta;
-
     @OneToMany(mappedBy = "coleta")
     @JsonManagedReference
     private List<Material> materiais;
@@ -47,11 +43,10 @@ public class Coleta {
         this.dataColeta = new Date();
     }
 
-    public Coleta(Coletor coletor, Colaborador colaborador, PontoColeta pontoColeta) {
+    public Coleta(Coletor coletor, Colaborador colaborador) {
         this.dataColeta = new Date();
         this.coletor = coletor;
         this.colaborador = colaborador;
-        this.pontoColeta = pontoColeta;
         this.materiais = new ArrayList<>();
     }
 }

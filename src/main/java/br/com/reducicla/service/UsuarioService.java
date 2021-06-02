@@ -59,21 +59,6 @@ public class UsuarioService implements UserDetailsService {
         }
     }
 
-    public Coletor save(Coletor coletor) {
-        coletor.setSenha(this.passwordEncoder.encode(coletor.getSenha()));
-        return this.usuarioRepository.save(coletor);
-    }
-
-    public Colaborador save(Colaborador colaborador) {
-        colaborador.setSenha(this.passwordEncoder.encode(colaborador.getSenha()));
-        return this.usuarioRepository.save(colaborador);
-    }
-
-    public void addMaterial(Material material, Colaborador colaborador) {
-        colaborador.getMateriais().add(material);
-        this.save(colaborador);
-    }
-
     public Usuario findById(Long id) {
         return this.usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
     }

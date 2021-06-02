@@ -29,7 +29,7 @@ public class PostEndpoint {
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
-    @GetMapping("protected/posts")
+    @GetMapping("posts")
     public ResponseEntity<Page<Post>> findAll(@PageableDefault Pageable pageable) {
         Page<Post> postPage = this.postService.findAll(pageable);
         return new ResponseEntity<>(postPage, HttpStatus.OK);
@@ -40,5 +40,10 @@ public class PostEndpoint {
         Post post = this.postService.findById(id);
         this.postService.delete(post);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("admin/posts/count")
+    public ResponseEntity<Long> count(){
+        return new ResponseEntity<>(this.postService.count(), HttpStatus.OK);
     }
 }

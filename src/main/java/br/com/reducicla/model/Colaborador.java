@@ -1,6 +1,7 @@
 package br.com.reducicla.model;
 
 import br.com.reducicla.dto.request.UsuarioRequestDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -34,6 +35,10 @@ public class Colaborador extends Usuario {
     @OneToMany(mappedBy = "colaborador")
     @JsonManagedReference
     private List<Material> materiais;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "colaborador")
+    @JsonManagedReference
+    private List<Coleta> coletas;
 
     public Colaborador() {
         this.setDataCadastro(new Date());

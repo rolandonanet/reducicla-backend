@@ -13,6 +13,7 @@ public class PostRequestDTO {
 
     private String titulo;
     private String descricao;
+    private String imageUrl;
 
     public PostRequestDTO() {
     }

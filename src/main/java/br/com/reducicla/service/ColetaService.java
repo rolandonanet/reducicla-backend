@@ -29,13 +29,29 @@ public class ColetaService {
         return this.coletaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Coleta não encontrada"));
     }
 
-    public Page<ColetaResponseDTO> findAll(Pageable pageable) {
-        Page<Coleta> coletaPage = this.coletaRepository.findAll(pageable);
-        List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
-        return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());
+    public Page<ColetaResponseDTO> findAll(Pageable pageable, Long colaboradorId, Long coletorId) {
+        if(colaboradorId != null && coletorId == null){
+            Page<Coleta> coletaPage = this.coletaRepository.findAllByColaboradorId(pageable, colaboradorId);
+            List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
+            return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());
+        }
+        else if(colaboradorId == null && coletorId != null){
+            Page<Coleta> coletaPage = this.coletaRepository.findAllByColetorId(pageable, coletorId);
+            List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
+            return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());
+        }
+        else{
+            Page<Coleta> coletaPage = this.coletaRepository.findAll(pageable);
+            List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
+            return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());
+        }
     }
 
     public void delete(Coleta coleta) {
         this.coletaRepository.delete(coleta);
+    }
+
+    public Long count() {
+        return this.coletaRepository.count();
     }
 }

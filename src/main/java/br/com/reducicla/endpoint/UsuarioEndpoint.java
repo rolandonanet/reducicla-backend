@@ -1,6 +1,7 @@
 package br.com.reducicla.endpoint;
 
 import br.com.reducicla.dto.request.UsuarioRequestDTO;
+import br.com.reducicla.enumerated.Role;
 import br.com.reducicla.model.Usuario;
 import br.com.reducicla.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class UsuarioEndpoint {
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
-    @GetMapping("protected/usuarios")
+    @GetMapping("admin/usuarios")
     public ResponseEntity<Page<Usuario>> findAll(@PageableDefault Pageable pageable) {
         return new ResponseEntity<>(this.usuarioService.findAll(pageable), HttpStatus.OK);
     }

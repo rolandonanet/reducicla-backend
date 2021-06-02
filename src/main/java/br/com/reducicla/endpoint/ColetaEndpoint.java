@@ -4,7 +4,6 @@ import br.com.reducicla.dto.response.ColetaResponseDTO;
 import br.com.reducicla.model.*;
 import br.com.reducicla.service.ColetaService;
 import br.com.reducicla.service.MaterialService;
-import br.com.reducicla.service.PontoColetaService;
 import br.com.reducicla.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,24 +22,21 @@ public class ColetaEndpoint {
 
     private final ColetaService coletaService;
     private final UsuarioService usuarioService;
-    private final PontoColetaService pontoColetaService;
     private final MaterialService materialService;
 
     @Autowired
-    public ColetaEndpoint(ColetaService coletaService, UsuarioService usuarioService, PontoColetaService pontoColetaService, MaterialService materialService) {
+    public ColetaEndpoint(ColetaService coletaService, UsuarioService usuarioService, MaterialService materialService) {
         this.coletaService = coletaService;
         this.usuarioService = usuarioService;
-        this.pontoColetaService = pontoColetaService;
         this.materialService = materialService;
     }
 
 
     @PostMapping("protected/coletas")
-    public ResponseEntity<ColetaResponseDTO> save(@RequestParam Long coletorId, @RequestParam Long colaboradorId, @RequestParam Long pontoColetaId) {
+    public ResponseEntity<ColetaResponseDTO> save(@RequestParam Long coletorId, @RequestParam Long colaboradorId) {
         Coletor coletor = (Coletor) this.usuarioService.findById(coletorId);
         Colaborador colaborador = (Colaborador) this.usuarioService.findById(colaboradorId);
-        PontoColeta pontoColeta = this.pontoColetaService.findById(pontoColetaId);
-        Coleta coleta = this.coletaService.save(new Coleta(coletor, colaborador, pontoColeta));
+        Coleta coleta = this.coletaService.save(new Coleta(coletor, colaborador));
         this.startColeta(coleta, colaborador);
         return new ResponseEntity<>(new ColetaResponseDTO(coleta), HttpStatus.CREATED);
     }
@@ -52,8 +48,8 @@ public class ColetaEndpoint {
     }
 
     @GetMapping("protected/coletas")
-    public ResponseEntity<Page<ColetaResponseDTO>> findAll(@PageableDefault Pageable pageable) {
-        return new ResponseEntity<>(this.coletaService.findAll(pageable), HttpStatus.OK);
+    public ResponseEntity<Page<ColetaResponseDTO>> findAll(@PageableDefault Pageable pageable, @RequestParam(required = false) Long colaboradorId, @RequestParam(required = false) Long coletorId) {
+        return new ResponseEntity<>(this.coletaService.findAll(pageable, colaboradorId, coletorId), HttpStatus.OK);
     }
 
     @DeleteMapping("admin/coletas/{id}")
@@ -61,6 +57,11 @@ public class ColetaEndpoint {
         Coleta coleta = this.coletaService.findById(id);
         this.coletaService.delete(coleta);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("admin/coletas/count")
+    public ResponseEntity<Long> count(){
+        return new ResponseEntity<>(this.coletaService.count(), HttpStatus.OK);
     }
 
 

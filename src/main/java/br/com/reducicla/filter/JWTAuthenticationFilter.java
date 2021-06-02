@@ -1,6 +1,7 @@
 package br.com.reducicla.filter;
 
 import br.com.reducicla.dto.response.CredencialResponseDTO;
+import br.com.reducicla.exception.InvalidPasswordException;
 import br.com.reducicla.exception.ResourceNotFoundException;
 import br.com.reducicla.model.Usuario;
 import br.com.reducicla.service.UsuarioService;
@@ -13,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -33,23 +35,29 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private final AuthenticationManager authenticationManager;
     private final UsuarioService usuarioService;
+    private final BCryptPasswordEncoder passwordEncoder;
     private final Logger logger = Logger.getLogger(JWTAuthenticationFilter.class.getName());
 
     @Autowired
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, UsuarioService usuarioService) {
         this.authenticationManager = authenticationManager;
         this.usuarioService = usuarioService;
+        this.passwordEncoder = new BCryptPasswordEncoder(10);
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         try {
-            Usuario usuario = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
-            String email = usuario.getEmail();
-            String senha = usuario.getSenha();
-            System.out.println(email);
-            System.out.println(senha);
-            return this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, senha));
+            Usuario login = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
+            String email = login.getEmail();
+            String senha = login.getSenha();
+
+            Usuario usuario = this.usuarioService.findByEmail(email);
+            if(passwordEncoder.matches(senha, usuario.getSenha())){
+                return this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, senha));
+            }
+
+            throw new InvalidPasswordException("Senha incorreta");
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Falha na autenticação do usuário", e);
             throw new RuntimeException(e);
