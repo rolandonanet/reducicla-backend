@@ -8,7 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Lucas Copque on 02/06/2021
@@ -26,18 +29,18 @@ public class ColetorEndpoint {
     }
 
     @GetMapping("protected/coletores/{id}")
-    public ResponseEntity<Coletor> findById(@PathVariable Long id){
+    public ResponseEntity<Coletor> findById(@PathVariable Long id) {
         Coletor coletor = this.coletorService.findById(id);
         return new ResponseEntity<>(coletor, HttpStatus.OK);
     }
 
     @GetMapping("protected/coletores")
-    public ResponseEntity<Page<Coletor>> findAll(@PageableDefault Pageable pageable){
+    public ResponseEntity<Page<Coletor>> findAll(@PageableDefault Pageable pageable) {
         return new ResponseEntity<>(this.coletorService.findAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("admin/coletores/count")
-    public ResponseEntity<Long> count(){
+    public ResponseEntity<Long> count() {
         return new ResponseEntity<>(this.coletorService.count(), HttpStatus.OK);
     }
 }

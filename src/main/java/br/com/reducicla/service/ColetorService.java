@@ -22,15 +22,15 @@ public class ColetorService {
         this.coletorRepository = coletorRepository;
     }
 
-    public Coletor findById(Long id){
+    public Coletor findById(Long id) {
         return this.coletorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Coletor não encontrado"));
     }
 
-    public Page<Coletor> findAll(Pageable pageable){
+    public Page<Coletor> findAll(Pageable pageable) {
         return this.coletorRepository.findAll(pageable);
     }
 
-    public Long count(){
+    public Long count() {
         return this.coletorRepository.count();
     }
 

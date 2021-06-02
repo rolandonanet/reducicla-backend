@@ -26,18 +26,18 @@ public class ColaboradorEndpoint {
     }
 
     @GetMapping("protected/colaboradores/{id}")
-    public ResponseEntity<Colaborador> findById(@PathVariable Long id){
+    public ResponseEntity<Colaborador> findById(@PathVariable Long id) {
         Colaborador colaborador = this.colaboradorService.findById(id);
         return new ResponseEntity<>(colaborador, HttpStatus.OK);
     }
 
     @GetMapping("protected/colaboradores")
-    public ResponseEntity<Page<Colaborador>> findAll(@PageableDefault Pageable pageable, @RequestParam(required = false) Boolean materiais){
+    public ResponseEntity<Page<Colaborador>> findAll(@PageableDefault Pageable pageable, @RequestParam(required = false) Boolean materiais) {
         return new ResponseEntity<>(this.colaboradorService.findAll(pageable, materiais), HttpStatus.OK);
     }
 
     @GetMapping("admin/colaboradores/count")
-    public ResponseEntity<Long> count(){
+    public ResponseEntity<Long> count() {
         return new ResponseEntity<>(this.colaboradorService.count(), HttpStatus.OK);
     }
 }

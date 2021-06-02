@@ -30,17 +30,15 @@ public class ColetaService {
     }
 
     public Page<ColetaResponseDTO> findAll(Pageable pageable, Long colaboradorId, Long coletorId) {
-        if(colaboradorId != null && coletorId == null){
+        if (colaboradorId != null && coletorId == null) {
             Page<Coleta> coletaPage = this.coletaRepository.findAllByColaboradorId(pageable, colaboradorId);
             List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
             return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());
-        }
-        else if(colaboradorId == null && coletorId != null){
+        } else if (colaboradorId == null && coletorId != null) {
             Page<Coleta> coletaPage = this.coletaRepository.findAllByColetorId(pageable, coletorId);
             List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
             return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());
-        }
-        else{
+        } else {
             Page<Coleta> coletaPage = this.coletaRepository.findAll(pageable);
             List<ColetaResponseDTO> coletaResponseDTOS = coletaPage.getContent().stream().map(ColetaResponseDTO::new).collect(Collectors.toList());
             return new PageImpl<>(coletaResponseDTOS, pageable, coletaPage.getTotalElements());

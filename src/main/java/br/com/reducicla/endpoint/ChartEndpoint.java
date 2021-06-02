@@ -30,17 +30,18 @@ public class ChartEndpoint {
 
     /**
      * Retorna os dados para o gráfico xpt
+     *
      * @param ano
      * @return
      */
     @GetMapping("admin/charts/time-line")
-    public ResponseEntity<List<ChartResponseDTO>> buildTimeLineChart(@RequestParam Integer ano){
+    public ResponseEntity<List<ChartResponseDTO>> buildTimeLineChart(@RequestParam Integer ano) {
         List<ChartResponseDTO> chartResponseDTOS = this.chartService.buildTimeLineChart(ano);
         return new ResponseEntity<>(chartResponseDTOS, HttpStatus.OK);
     }
 
     @GetMapping("admin/charts/column")
-    public ResponseEntity<List<ChartResponseDTO>> buildColumnChart(@RequestParam Date inicio, Date fim){
+    public ResponseEntity<List<ChartResponseDTO>> buildColumnChart(@RequestParam Date inicio, Date fim) {
         List<ChartResponseDTO> chartResponseDTOS = this.chartService.buildColumnChart(inicio, fim);
         return new ResponseEntity<>(chartResponseDTOS, HttpStatus.OK);
     }

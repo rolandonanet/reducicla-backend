@@ -1,7 +1,6 @@
 package br.com.reducicla.endpoint;
 
 import br.com.reducicla.dto.request.ComentarioRequestDTO;
-import br.com.reducicla.dto.request.RespostaRequestDTO;
 import br.com.reducicla.model.Comentario;
 import br.com.reducicla.model.Post;
 import br.com.reducicla.service.ComentarioService;

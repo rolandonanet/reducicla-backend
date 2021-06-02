@@ -5,7 +5,6 @@ import br.com.reducicla.enumerated.Role;
 import br.com.reducicla.exception.ResourceNotFoundException;
 import br.com.reducicla.model.Colaborador;
 import br.com.reducicla.model.Coletor;
-import br.com.reducicla.model.Material;
 import br.com.reducicla.model.Usuario;
 import br.com.reducicla.repository.ColaboradorRepository;
 import br.com.reducicla.repository.ColetorRepository;

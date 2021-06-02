@@ -16,6 +16,7 @@ public interface ColetaRepository extends JpaRepository<Coleta, Long> {
     List<Coleta> findAllByDataColetaBetween(Date inicio, Date fim);
 
     Page<Coleta> findAllByColaboradorId(Pageable pageable, Long colaboradorId);
+
     Page<Coleta> findAllByColetorId(Pageable pageable, Long coletorId);
 
     Long countByDataColetaBetween(Date inicio, Date fim);

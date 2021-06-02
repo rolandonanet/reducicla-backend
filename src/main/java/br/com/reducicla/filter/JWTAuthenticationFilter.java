@@ -53,7 +53,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             String senha = login.getSenha();
 
             Usuario usuario = this.usuarioService.findByEmail(email);
-            if(passwordEncoder.matches(senha, usuario.getSenha())){
+            if (passwordEncoder.matches(senha, usuario.getSenha())) {
                 return this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, senha));
             }
 

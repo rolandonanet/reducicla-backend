@@ -1,7 +1,6 @@
 package br.com.reducicla.model;
 
 import br.com.reducicla.dto.request.UsuarioRequestDTO;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;

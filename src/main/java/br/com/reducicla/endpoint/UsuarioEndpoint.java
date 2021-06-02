@@ -1,7 +1,6 @@
 package br.com.reducicla.endpoint;
 
 import br.com.reducicla.dto.request.UsuarioRequestDTO;
-import br.com.reducicla.enumerated.Role;
 import br.com.reducicla.model.Usuario;
 import br.com.reducicla.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;

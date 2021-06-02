@@ -43,7 +43,7 @@ public class PostEndpoint {
     }
 
     @GetMapping("admin/posts/count")
-    public ResponseEntity<Long> count(){
+    public ResponseEntity<Long> count() {
         return new ResponseEntity<>(this.postService.count(), HttpStatus.OK);
     }
 }

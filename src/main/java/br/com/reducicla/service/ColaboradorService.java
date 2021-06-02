@@ -22,19 +22,18 @@ public class ColaboradorService {
         this.colaboradorRepository = colaboradorRepository;
     }
 
-    public Colaborador findById(Long id){
+    public Colaborador findById(Long id) {
         return this.colaboradorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Colaborador não encontrado"));
     }
 
-    public Page<Colaborador> findAll(Pageable pageable, Boolean materiais){
-        if(materiais != null) {
-            if(materiais) return this.colaboradorRepository.findAll(pageable);
+    public Page<Colaborador> findAll(Pageable pageable, Boolean materiais) {
+        if (materiais != null) {
+            if (materiais) return this.colaboradorRepository.findAll(pageable);
             else return this.colaboradorRepository.findAllByMateriaisNotNull(pageable);
-        }
-        else return this.colaboradorRepository.findAll(pageable);
+        } else return this.colaboradorRepository.findAll(pageable);
     }
 
-    public Long count(){
+    public Long count() {
         return this.colaboradorRepository.count();
     }
 }

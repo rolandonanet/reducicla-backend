@@ -36,7 +36,7 @@ public class PostService {
         this.postRepository.delete(post);
     }
 
-    public Long count(){
+    public Long count() {
         return this.postRepository.count();
     }
 }

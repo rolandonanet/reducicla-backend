@@ -1,7 +1,10 @@
 package br.com.reducicla.endpoint;
 
 import br.com.reducicla.dto.response.ColetaResponseDTO;
-import br.com.reducicla.model.*;
+import br.com.reducicla.model.Colaborador;
+import br.com.reducicla.model.Coleta;
+import br.com.reducicla.model.Coletor;
+import br.com.reducicla.model.Material;
 import br.com.reducicla.service.ColetaService;
 import br.com.reducicla.service.MaterialService;
 import br.com.reducicla.service.UsuarioService;
@@ -60,7 +63,7 @@ public class ColetaEndpoint {
     }
 
     @GetMapping("admin/coletas/count")
-    public ResponseEntity<Long> count(){
+    public ResponseEntity<Long> count() {
         return new ResponseEntity<>(this.coletaService.count(), HttpStatus.OK);
     }
 
