@@ -22,6 +22,9 @@ import static br.com.reducicla.utils.SecurityConstants.*;
  * @author User on 19/05/2021
  */
 
+/**
+ * Classe responsável por verificar e atribuir as permissões do usuário autenticado via JWT
+ */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     private final UsuarioService usuarioService;

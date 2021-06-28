@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
-@Repository
+/**
+ * @author Gustavo Miguel on 19/05/2021
+ */
 
+@Repository
 public interface ColetaRepository extends JpaRepository<Coleta, Long> {
 
     List<Coleta> findAllByDataColetaBetween(Date inicio, Date fim);

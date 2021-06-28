@@ -8,8 +8,12 @@ import lombok.Setter;
  * @author Lucas Copque on 26/05/2021
  */
 
-@Setter
+/**
+ * Classe responsável por realizar o binding do objeto Material vindo de uma requisição
+ */
+
 @Getter
+@Setter
 public class MaterialRequestDTO {
     private String nome;
     private Integer quantidade;

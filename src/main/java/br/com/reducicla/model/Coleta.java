@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Lucas Copque on 19/05/2021
+ */
+
 @Entity
 @DynamicUpdate
 @Getter

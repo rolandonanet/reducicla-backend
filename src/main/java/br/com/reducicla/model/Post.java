@@ -10,6 +10,10 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Gustavo Miguel on 19/05/2021
+ */
+
 @Entity
 @Getter
 @Setter

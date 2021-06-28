@@ -7,8 +7,12 @@ import lombok.Setter;
  * @author Lucas Copque on 26/05/2021
  */
 
-@Setter
+/**
+ * Classe responsável por realizar o binding do objeto Comentário vindo de uma requisição
+ */
+
 @Getter
+@Setter
 public class ComentarioRequestDTO {
 
     private String nome;

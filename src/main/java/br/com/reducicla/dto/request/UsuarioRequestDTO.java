@@ -10,10 +10,13 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * @author User on 26/05/2021
+ * @author Lucas Copque on 26/05/2021
  */
 
-@ToString
+/**
+ * Classe responsável por realizar o binding do objeto Usuário vindo de uma requisição
+ */
+
 @Getter
 @Setter
 public class UsuarioRequestDTO {

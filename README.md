@@ -4,6 +4,8 @@
 
 Reducicla Rest API desenvolvido com [Spring Boot](http://projects.spring.io/spring-boot/).
 
+Para configurações iniciais como conexão com banco de dados, utilize o arquivo `application.properties`
+
 ## Requirimentos
 
 Para construir e executar o aplicativo que você precisa:

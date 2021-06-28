@@ -1,7 +1,11 @@
 package br.com.reducicla.utils;
 
 /**
- * @author User on 19/05/2021
+ * @author Lucas Copque on 19/05/2021
+ */
+
+/**
+ * Classe com constantes utilizadas para gerar o JWT
  */
 
 public class SecurityConstants {

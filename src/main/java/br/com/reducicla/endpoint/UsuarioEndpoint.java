@@ -12,7 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author User on 26/05/2021
+ * @author Lucas Copque on 26/05/2021
+ */
+
+/**
+ * Endpoint mapeado à requests de usuário
  */
 
 @RestController
@@ -26,22 +30,43 @@ public class UsuarioEndpoint {
         this.usuarioService = usuarioService;
     }
 
+    /**
+     * Registra um usuário
+     * @param usuarioRequestDTO Objeto que irá fazer o binding de usuário
+     * @return Retorna o usuário salvo
+     */
     @PostMapping("usuarios")
     public ResponseEntity<?> save(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         return new ResponseEntity<>(this.usuarioService.save(usuarioRequestDTO), HttpStatus.CREATED);
     }
 
+    /**
+     * Busca um usuário pelo seu código identificador
+     * @param id Long - Código identificador do usuário
+     * @return Retorna o usuário localizado ou lança uma exceção ResourceNotFound caso não localizado
+     */
     @GetMapping("protected/usuarios/{id}")
     public ResponseEntity<Usuario> findById(@PathVariable Long id) {
         Usuario usuario = this.usuarioService.findById(id);
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
+    /**
+     * Retorna uma lista de usuário com paginação
+     * @param pageable Objeto que contém informações e paginação
+     * @return Retorna uma lista de usuários registrados
+     */
     @GetMapping("admin/usuarios")
     public ResponseEntity<Page<Usuario>> findAll(@PageableDefault Pageable pageable) {
         return new ResponseEntity<>(this.usuarioService.findAll(pageable), HttpStatus.OK);
     }
 
+    /**
+     * Deleta um usuário pelo seu código identificador
+     * Endpoint acessado somente por usuários com nível ADMIN
+     * @param id Long - Código identificador do usuário
+     * @return Retorna nulo caso houver sucesso ou lança a exceção ResourceNotFound caso não localizado
+     */
     @DeleteMapping("admin/usuarios/{id}")
     public ResponseEntity<Usuario> delete(@PathVariable Long id) {
         Usuario usuario = this.usuarioService.findById(id);

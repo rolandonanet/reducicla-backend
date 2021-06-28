@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Endpoint mapeado à requests de coleta
+ */
+
 @RestController
 @RequestMapping("v1")
 public class ColetaEndpoint {
-
 
     private final ColetaService coletaService;
     private final UsuarioService usuarioService;
@@ -34,7 +37,12 @@ public class ColetaEndpoint {
         this.materialService = materialService;
     }
 
-
+    /**
+     * Registra uma coleta
+     * @param coletorId Long - Código identificador do colaborador associado à esta coleta
+     * @param colaboradorId Long - Código identificador do coletor associado à esta coleta
+     * @return Retorna a coleta salva
+     */
     @PostMapping("protected/coletas")
     public ResponseEntity<ColetaResponseDTO> save(@RequestParam Long coletorId, @RequestParam Long colaboradorId) {
         Coletor coletor = (Coletor) this.usuarioService.findById(coletorId);
@@ -44,17 +52,35 @@ public class ColetaEndpoint {
         return new ResponseEntity<>(new ColetaResponseDTO(coleta), HttpStatus.CREATED);
     }
 
+    /**
+     * Busca uma coleta
+     * @param id Long - Código identificador da coleta
+     * @return Retorna a coleta localizada ou lança uma exceção ResourceNotFound caso não localizada
+     */
     @GetMapping("protected/coletas/{id}")
     public ResponseEntity<ColetaResponseDTO> findById(@PathVariable Long id) {
         Coleta coleta = this.coletaService.findById(id);
         return new ResponseEntity<>(new ColetaResponseDTO(coleta), HttpStatus.OK);
     }
 
+    /**
+     * Retorna uma lista de coletas com paginação
+     * @param pageable Objeto que contém informações de paginação
+     * @param colaboradorId Parâmetro não obrigatório. Filtra as coletas por colaborador -> Long - Código identificador do colaborador
+     * @param coletorId Parâmetro não obrigatório. Filtra as coletas por coletor -> Long - Código identificador do coletor
+     * @return Retorna uma lista de coletas com paginação
+     */
     @GetMapping("protected/coletas")
     public ResponseEntity<Page<ColetaResponseDTO>> findAll(@PageableDefault Pageable pageable, @RequestParam(required = false) Long colaboradorId, @RequestParam(required = false) Long coletorId) {
         return new ResponseEntity<>(this.coletaService.findAll(pageable, colaboradorId, coletorId), HttpStatus.OK);
     }
 
+    /**
+     * Deleta uma coleta.
+     * Somente usuários com nível ADMIN conseguem acessar este endpoint.
+     * @param id Long - Código identificador da coleta
+     * @return Retorna nulo caso houver sucesso ou lança a exceção ResourceNotFound caso não localizado
+     */
     @DeleteMapping("admin/coletas/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Coleta coleta = this.coletaService.findById(id);
@@ -62,12 +88,21 @@ public class ColetaEndpoint {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * Contabiliza os registro de coleta
+     * @return Retorna no número de coletas registradas
+     */
     @GetMapping("admin/coletas/count")
     public ResponseEntity<Long> count() {
         return new ResponseEntity<>(this.coletaService.count(), HttpStatus.OK);
     }
 
 
+    /**
+     * Método auxiliar para buildar os objetos associados a coleta
+     * @param coleta Objeto que contém informações referente a coleta
+     * @param colaborador Objeto que contém informações referente ao colaborador
+     */
     private void startColeta(Coleta coleta, Colaborador colaborador) {
         List<Material> materiais = colaborador.getMateriais();
         materiais.forEach(material -> this.materialService.coletaMaterial(material, coleta));

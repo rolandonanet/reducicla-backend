@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-@Service
+/**
+ * @author Gustavo Miguel on 02/06/2021
+ */
 
+@Service
 public class MaterialService {
     private final MaterialRepository materialRepository;
 

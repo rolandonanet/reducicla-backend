@@ -31,6 +31,10 @@ import static br.com.reducicla.utils.SecurityConstants.*;
 /**
  * @author User on 19/05/2021
  */
+
+/**
+ * Classe responsável por aplicar a lógica de autenticação do usuário com as técnicas de JWT
+ */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;

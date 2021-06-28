@@ -11,6 +11,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
+/**
+ * @author Gustavo Miguel on 19/05/2021
+ */
+
 @Entity
 @DynamicUpdate
 @Getter

@@ -19,9 +19,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * @author User on 19/05/2021
+ * @author Lucas Copque on 19/05/2021
  */
 
+/**
+ * Classe de configuração do Spring Boot Security.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -34,6 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.usuarioService = usuarioService;
     }
 
+    /**
+     * Adiciona configurações de cors e mapeamento de endpoints com autenticação e autorização.
+     * @param http Objeto que contém informações da requisição http
+     * @throws Exception Lança exeção caso algum erro for localizado em tempo de execução
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors()
@@ -48,6 +56,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), usuarioService));
     }
 
+    /**
+     * Seta configurações iniciais de cors
+     * @return Retorna um objeto com as configurações de cors setadas
+     */
     @Bean
     protected CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -59,6 +71,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
+    /**
+     * Seta configurações como o spring boot deve validar a senha do usuário para autenticação
+     * @param auth Objeto que contém informações de autenticação
+     * @throws Exception Lança exeção caso algum erro for localizado em tempo de execução
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder(10));

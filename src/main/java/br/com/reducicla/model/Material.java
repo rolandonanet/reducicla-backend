@@ -12,6 +12,10 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * @author Gustavo Miguel on 19/05/2021
+ */
+
 @Entity
 @DynamicUpdate
 @Getter

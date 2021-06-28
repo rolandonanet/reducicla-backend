@@ -15,6 +15,11 @@ import java.util.*;
  * @author User on 19/05/2021
  */
 
+/**
+ * Classe que mapea as exceções lançadas pela API e gera sua mensagem de orientação padronizada com o template
+ * proposto na classe ErrorDetails
+ */
+
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 

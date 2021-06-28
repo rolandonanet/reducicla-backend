@@ -1,10 +1,19 @@
 package br.com.reducicla.dto.response;
 
 import br.com.reducicla.enumerated.Role;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author User on 19/05/2021
  */
+
+/**
+ * Classe responsável por buildar o objeto Credencial que irá como resposta para aplicação front-end
+ */
+
+@Getter
+@Setter
 public class CredencialResponseDTO {
     private Long id;
     private String email;

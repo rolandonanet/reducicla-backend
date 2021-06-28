@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author User on 19/05/2021
+ * @author Gustavo Miguel on 19/05/2021
  */
 
 @Entity
@@ -22,7 +22,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "usuario_coletor")
 @PrimaryKeyJoinColumn(name = "usuario_id")
-
 public class Coletor extends Usuario {
 
     @Id

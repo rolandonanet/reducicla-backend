@@ -13,6 +13,10 @@ import java.util.stream.Collectors;
  * @author Lucas Copque on 29/05/2021
  */
 
+/**
+ * Classe responsável por buildar o objeto Coleta que irá como resposta para aplicação front-end
+ */
+
 @Getter
 @Setter
 public class ColetaResponseDTO {

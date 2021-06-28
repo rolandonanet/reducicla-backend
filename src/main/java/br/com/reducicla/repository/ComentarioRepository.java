@@ -6,8 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+/**
+ * @author Gustavo Miguel on 19/05/2021
+ */
 
+@Repository
 public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
 
     Page<Comentario> findAllByPostId(Pageable pageable, Long postId);

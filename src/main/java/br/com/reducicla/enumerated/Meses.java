@@ -6,6 +6,10 @@ import lombok.Getter;
  * @author Lucas Copque on 01/06/2021
  */
 
+/**
+ * Enum com meses para build do chart timeline
+ */
+
 @Getter
 public enum Meses {
     JANEIRO(0, "Janeiro"),

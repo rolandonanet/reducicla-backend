@@ -2,8 +2,11 @@ package br.com.reducicla.enumerated;
 
 import lombok.Getter;
 
-@Getter
+/**
+ * Enum com os tipos de materiais
+ */
 
+@Getter
 public enum TipoMaterial {
     PLASTICO("Plástico"),
     VIDRO("Vidro"),

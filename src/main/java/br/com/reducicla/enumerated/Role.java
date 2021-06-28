@@ -6,6 +6,10 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 import java.util.List;
 
+/**
+ * Enum com as roles dos usuários
+ */
+
 @Getter
 public enum Role {
 

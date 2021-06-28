@@ -5,6 +5,7 @@ import br.com.reducicla.exception.ResourceNotFoundException;
 import br.com.reducicla.model.Coleta;
 import br.com.reducicla.repository.ColetaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +15,19 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Lucas Copque on 02/06/2021
+ */
+
 @Service
-@RequiredArgsConstructor
 public class ColetaService {
 
     private final ColetaRepository coletaRepository;
+
+    @Autowired
+    public ColetaService(ColetaRepository coletaRepository) {
+        this.coletaRepository = coletaRepository;
+    }
 
     @Transactional
     public Coleta save(Coleta coleta) {
