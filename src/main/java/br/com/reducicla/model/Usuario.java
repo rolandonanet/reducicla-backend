@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -34,6 +35,12 @@ public class Usuario {
 
     @NotEmpty(message = "Sobrenome obrigatório")
     private String sobrenome;
+
+    @CPF(message = "Cpf inválido")
+    @NotEmpty(message = "Cpf obrigatório")
+    private String cpf;
+
+    private String telefone;
 
     @NotEmpty(message = "Email obrigatório")
     private String email;
